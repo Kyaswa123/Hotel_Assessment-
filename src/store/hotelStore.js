@@ -1,11 +1,10 @@
-
 import { create } from "zustand";
 
 const useHotelStore = create((set) => ({
   selectedHotel: null,
   bookingDetails: {},
 
-  setSelectedHotel: (hotel) => set({ selectedHotel: hotel }),
+  setSelectedHotel: (data) => set({ selectedHotel: data }),
 
   updateBookingDetails: (details) =>
     set((state) => ({

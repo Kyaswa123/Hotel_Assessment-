@@ -1,7 +1,7 @@
+import { Star, MapPin, data } from "lucide-react";
 
-import { Star, MapPin, Hotel } from "lucide-react";
-
-const HotelCard = ({ hotel, isSelected, onSelect }) => {
+const dataCard = ({ data, isSelected, onSelect }) => {
+  console.log("daraaaaaaaaa", data);
   return (
     <div
       className={`
@@ -13,45 +13,46 @@ const HotelCard = ({ hotel, isSelected, onSelect }) => {
               : "border-gray-200 hover:border-primary/50"
           }
         `}
-      onClick={() => onSelect(hotel)}
+      onClick={() => onSelect(data)}
     >
-      {/* Hotel Image */}
+      {/* data Image */}
       <div className="aspect-video overflow-hidden">
         <img
-          src={hotel.imageUrl}
-          alt={hotel.name}
+          src={data.images}
+          alt={data.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
       </div>
 
-      {/* Hotel Details */}
+      {/* data Details */}
       <div className="p-4 bg-white">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-xl font-bold text-gray-800 truncate">
-            {hotel.name}
+            {data.name}
           </h3>
           <div className="flex items-center text-yellow-500">
             <Star className="w-5 h-5 fill-current" />
-            <span className="ml-1 font-semibold">{hotel.rating}</span>
+            <span className="ml-1 font-semibold">{data.rating}</span>
           </div>
         </div>
 
         <div className="flex items-center text-gray-600 mb-2">
           <MapPin className="w-5 h-5 mr-2" />
-          <span>{hotel.location}</span>
+          <span>{data.availability}</span>
         </div>
 
         <div className="flex justify-between items-center">
           <div>
             <span className="text-primary font-bold text-lg">
-              ${hotel.pricePerNight}
+              ${data.price_per_night}
             </span>
             <span className="text-gray-500 ml-1">/ night</span>
           </div>
 
           <div className="flex items-center space-x-2 text-gray-700">
-            <Hotel className="w-5 h-5" />
-            <span className="text-sm">{hotel.availableRooms} Rooms</span>
+            <data className="w-5 h-5" />
+
+            <span className="text-sm">{data.amenities} Rooms</span>
           </div>
         </div>
       </div>
@@ -61,17 +62,17 @@ const HotelCard = ({ hotel, isSelected, onSelect }) => {
         className={`
           absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold
           ${
-            hotel.availableRooms > 5
+            data.availableRooms == true
               ? "bg-green-500 text-white"
-              : hotel.availableRooms > 0
+              : data.availableRooms == false
               ? "bg-yellow-500 text-white"
               : "bg-red-500 text-white"
           }
         `}
       >
-        {hotel.availableRooms > 5
+        {data.availableRooms == true
           ? "Plenty of Rooms"
-          : hotel.availableRooms > 0
+          : data.availableRooms == false
           ? "Limited Rooms"
           : "No Rooms"}
       </div>
@@ -79,4 +80,4 @@ const HotelCard = ({ hotel, isSelected, onSelect }) => {
   );
 };
 
-export default HotelCard;
+export default dataCard;

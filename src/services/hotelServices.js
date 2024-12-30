@@ -1,16 +1,15 @@
-
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../utils/axiosConfig";
 
 // Fetch Hotels
 export const useFetchHotels = () => {
   return useQuery({
-    queryKey: ["hotels"],
+    queryKey: ["data"],
     queryFn: async () => {
-      const response = await api.get("/hotels");
+      const response = await api.get("/data");
       return response.data;
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    // staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 
@@ -22,9 +21,9 @@ export const useCreateBooking = () => {
     mutationFn: async (bookingData) => {
       // Validate available rooms before booking
       const hotelResponse = await api.get(`/hotels/${bookingData.hotelId}`);
-      const hotel = hotelResponse.data;
+      const data = hotelResponse.data;
 
-      if (hotel.availableRooms <= 0) {
+      if (data.availableRooms <= 0) {
         throw new Error("No rooms available");
       }
 
@@ -33,7 +32,7 @@ export const useCreateBooking = () => {
 
       // Update hotel's available rooms
       await api.patch(`/hotels/${bookingData.hotelId}`, {
-        availableRooms: hotel.availableRooms - 1,
+        availableRooms: data.availableRooms - 1,
       });
 
       return bookingResponse.data;

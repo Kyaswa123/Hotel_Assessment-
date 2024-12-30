@@ -1,6 +1,8 @@
 import axios from "axios";
+import { CalendarDays, List, Data } from "lucide-react";
+import BookingModal from "../components/BookingModal";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://run.mocky.io/v3/c4889414-e2b2-412f-a48a-dda733d95220";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -15,6 +17,8 @@ api.interceptors.request.use(
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
+    console.log("Request Config:", config); // Logging request details for debugging
+
     return config;
   },
   (error) => {
@@ -23,7 +27,13 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Log the response data
+
+    // You can also log other parts of the response if needed
+    console.log("Response Status:", response.status);
+    return response; // Return the response so that it can be handled by the caller
+  },
   (error) => {
     const status = error.response ? error.response.status : null;
     switch (status) {

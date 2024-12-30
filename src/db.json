@@ -7,7 +7,7 @@
       "rating": 4.5,
       "pricePerNight": 150,
       "availableRooms": 9,
-      "imageUrl": "https://via.placeholder.com/150/0000FF/FFFFFF?text=Ocean+View+Resort"
+      "imageUrl": "https://via.placeholder.com/200/a59292/000000?text=Ocean+Viwe+Resort"
     },
     {
       "id": "2",
@@ -24,7 +24,7 @@
       "location": "New York",
       "rating": 4.2,
       "pricePerNight": 180,
-      "availableRooms": 8,
+      "availableRooms": 7,
       "imageUrl": "https://via.placeholder.com/150/FF0000/FFFFFF?text=City+Lights+Hotel"
     },
     {
@@ -52,7 +52,7 @@
       "rating": 4.9,
       "pricePerNight": 250,
       "availableRooms": 4,
-      "imageUrl": "https://via.placeholder.com/150/FFFF00/FFFFFF?text=Tropical+Paradise"
+      "imageUrl": "https://via.placeholder.com/200/a59090/000000?text=Tropical+Paradise"
     },
     {
       "id": "7",
@@ -135,6 +135,17 @@
       "hotelName": "Ocean View Resort",
       "status": "pending",
       "totalPrice": 1050
+    },
+    {
+      "id": "100a",
+      "guestName": "sai",
+      "checkIn": "2024-12-27",
+      "checkOut": "2025-01-03",
+      "guests": "2",
+      "hotelId": "3",
+      "hotelName": "City Lights Hotel",
+      "status": "pending",
+      "totalPrice": 2520
     }
   ],
   "users": []
