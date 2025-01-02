@@ -5,8 +5,7 @@ import { Users } from "lucide-react";
 import HotelCard from "./HotelCard";
 
 const HotelList = () => {
-  const { data: data, isLoading, error } = useFetchHotels();
-  console.log("#######", data);
+  const { data: hotels, isLoading, error } = useFetchHotels();
   const { setSelectedHotel } = useHotelStore();
   const [selectedHotelId, setSelectedHotelId] = useState(null);
 
@@ -25,9 +24,9 @@ const HotelList = () => {
       </div>
     );
 
-  const handleHotelSelect = (data) => {
-    setSelectedHotel(data);
-    setSelectedHotelId(data.id);
+  const handleHotelSelect = (hotel) => {
+    setSelectedHotel(hotel);
+    setSelectedHotelId(hotel.id);
   };
 
   return (
@@ -38,17 +37,17 @@ const HotelList = () => {
         </h2>
         <div className="flex items-center text-gray-600">
           <Users className="mr-2" />
-          <span>{data.rating} Hotels Available</span>
+          <span>{hotels.length} Hotels Available</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {data.map((hotel) => (
+        {hotels.map((hotel) => (
           <HotelCard
-            key={hotel.id} // unique key for each hotel
-            data={hotel} // passing the full hotel data to the HotelCard
-            isSelected={selectedHotelId === hotel.id} // conditionally highlight if the hotel is selected
-            onSelect={handleHotelSelect} // function to handle selection
+            key={hotel.id}
+            hotel={hotel}
+            isSelected={selectedHotelId === hotel.id}
+            onSelect={handleHotelSelect}
           />
         ))}
       </div>

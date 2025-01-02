@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useCreateBooking } from "../services/hotelServices";
 import useHotelStore from "../store/hotelStore";
@@ -11,6 +10,7 @@ const BookingModal = () => {
 
   const [bookingForm, setBookingForm] = useState({
     guestName: "",
+    phoneNumber: "",
     checkIn: "",
     checkOut: "",
     guests: 1,
@@ -30,6 +30,11 @@ const BookingModal = () => {
     // Validate form inputs
     if (!bookingForm.guestName.trim()) {
       toast.warning("Please enter guest name", "error");
+      return;
+    }
+
+    if (!bookingForm.phoneNumber.trim()) {
+      toast.warning("Please enter phone number", "error");
       return;
     }
 
@@ -128,6 +133,22 @@ const BookingModal = () => {
 
           <div className="mb-4">
             <label className="block mb-2 flex items-center">
+              <User className="mr-2 text-gray-600" />
+              Phone Number
+            </label>
+            <input
+              type="text"
+              name="phoneNumber"
+              value={bookingForm.phoneNumber}
+              onChange={handleInputChange}
+              className="w-full border rounded p-2"
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block mb-2 flex items-center">
               <Calendar className="mr-2 text-gray-600" />
               Check-in Date
             </label>
@@ -190,7 +211,6 @@ const BookingModal = () => {
             >
               Cancel
             </button>
-            
             <button
               type="submit"
               className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 transition"

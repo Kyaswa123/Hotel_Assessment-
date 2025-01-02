@@ -4,7 +4,7 @@ const useHotelStore = create((set) => ({
   selectedHotel: null,
   bookingDetails: {},
 
-  setSelectedHotel: (data) => set({ selectedHotel: data }),
+  setSelectedHotel: (hotel) => set({ selectedHotel: hotel }),
 
   updateBookingDetails: (details) =>
     set((state) => ({

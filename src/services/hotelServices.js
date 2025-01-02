@@ -4,12 +4,12 @@ import api from "../utils/axiosConfig";
 // Fetch Hotels
 export const useFetchHotels = () => {
   return useQuery({
-    queryKey: ["data"],
+    queryKey: ["hotels"],
     queryFn: async () => {
-      const response = await api.get("/data");
+      const response = await api.get("/hotels");
       return response.data;
     },
-    // staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 
@@ -21,9 +21,9 @@ export const useCreateBooking = () => {
     mutationFn: async (bookingData) => {
       // Validate available rooms before booking
       const hotelResponse = await api.get(`/hotels/${bookingData.hotelId}`);
-      const data = hotelResponse.data;
+      const hotel = hotelResponse.data;
 
-      if (data.availableRooms <= 0) {
+      if (hotel.availableRooms <= 0) {
         throw new Error("No rooms available");
       }
 
@@ -32,7 +32,7 @@ export const useCreateBooking = () => {
 
       // Update hotel's available rooms
       await api.patch(`/hotels/${bookingData.hotelId}`, {
-        availableRooms: data.availableRooms - 1,
+        availableRooms: hotel.availableRooms - 1,
       });
 
       return bookingResponse.data;
